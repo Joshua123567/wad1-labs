@@ -1,11 +1,18 @@
-import logger from "../utils/logger.js";
-
 'use strict';
+
+import logger from "../utils/logger.js";
+import employeeStore from "../models/employee-store.js";
 
 const about = {
   createView(request, response) {
     logger.info("About page loading!");
-    response.send('About the Playlist app');   
+
+    const viewData = {
+      title: "About",
+      employee: employeeStore.getAppInfo(),
+    };
+
+    response.render("about", viewData);
   },
 };
 
